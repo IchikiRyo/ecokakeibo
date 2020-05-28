@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "htts://github.com/#{repo_name}.git"
 end
-ruby '2.3.1'
+ruby '2.6.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
@@ -57,13 +57,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'therubyracer'
 gem 'less-rails'
-gem 'twitter-bootstrap-rails'
-gem 'bootstrap-sass'
 gem 'compass-rails'
 gem 'bcrypt'
 gem 'jquery-rails'
 gem 'jquery'
-gem 'bootstrap-will_paginate'
 gem 'chartkick'
 gem 'groupdate'
 gem 'mini_magick'

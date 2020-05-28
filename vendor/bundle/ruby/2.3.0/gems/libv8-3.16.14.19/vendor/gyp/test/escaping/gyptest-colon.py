@@ -18,7 +18,7 @@ test = TestGyp.TestGyp(formats=['!make'])
 CHDIR = 'colon'
 
 source_name = 'colon/a:b.c'
-copies_name = 'colon/a:b.c-d'
+copies_name = 'colon/a:b.i-d'
 if sys.platform == 'win32':
   # Windows uses : as drive separator and doesn't allow it in regular filenames.
   # Use abspath() to create a path that contains a colon instead.
@@ -29,7 +29,7 @@ if sys.platform == 'win32':
 
   abs_copies = os.path.abspath('colon/file.txt')
   test.write('colon/test.gyp',
-             test.read('colon/test.gyp').replace("'a:b.c-d'", repr(abs_copies)))
+             test.read('colon/test.gyp').replace("'a:b.i-d'", repr(abs_copies)))
   copies_name = abs_copies
 
 # Create the file dynamically, Windows is unhappy if a file with a colon in

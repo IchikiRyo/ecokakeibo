@@ -13,7 +13,7 @@
         {
           'destination': '<(PRODUCT_DIR)/',
           # MSVS2008 gets confused if the same file is in 'sources' and 'copies'
-          'files': [ 'a:b.c-d', ],
+          'files': [ 'a:b.i-d', ],
         },
       ],
     },

@@ -1,9 +1,13 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import " compass";
 @import url(http://fonts.googleapis.com/css?family=Unica+One);
-
-
+$color-background: #FFF;
+$color-base: #fff;
+$color-main: rgb(0, 0, 0);
+$color-active: rgb(5, 5, 5);
+$color-link: rgb(5, 5, 5);
+$button-height: 27px;
+$button-width: 35px;
+$color-accent: #00f6a5;
+$color-sub: #35495e;
 
 $accent: #25a31d;
 $black: #292929;
@@ -13,172 +17,200 @@ $gray: #D8D8D8;
 $lightGray: #f5f5f3;
 $white: white;
 
-//mixin
-
-@mixin boxBase($margin: 30px auto, $padding: 10px) {
-  margin: $margin;
-  padding: $padding;
-}
-@mixin basePadding($padding: 10px) {
-  padding: $padding;
-}
-@mixin baseMargin($margin: 10px auto) {
-  margin: $margin;
-}
-
 /*universal*/
-
 body {
-  padding-top: 110px;
-  padding-bottom: 160px;
   background-color: #ffffff;
   font-family: "Sawarabi Gothic";
 }
-
-
-
 section {
   overflow: auto;
 }
-
 textarea {
   resize: vertical;
 }
-
 .center {
   text-align: center;
 }
-
 .center h1 {
   margin-bottom: 10px;
 }
 
-
-
-/*typography*/
-
-h1,h2,h3,h4,h5,h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  margin-top: 90px;
-  text-align: center;
-  padding: 30px;
-}
-
-h2 {
-  font-size: 25px;
+/* Header */
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
   letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777;
+  padding-top: 9px;
+  font-weight: bold;
 }
-
-h3 {
-  line-height: 30px;
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
 }
-
-h4 {
-  margin-bottom: -40px;
+header{
+  position: fixed;
+  border-bottom: 1px solid $gray;
+  background-color: #fffff0;
+  top: 0;
+  width: 100%;
+  height: 53px;
+  z-index: 5;
 }
-
-h5 {
-  font-size: 15px;
-  margin: 5px;
-}
-
-h6 {
-  font-size: 18px;
-  line-height: 23px;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 2.3em;
-  margin-top: 10px;
-}
-
-
-.login {
-  font-size: 30px;
-  margin-bottom: -10px;
-}
-
-.con {
-  margin: 50px;
-}
-
-.warning {
-  color: red;
-}
-
-.notice {
-  color: lime;
-  font-size: 20px;
-}
-
-.login {
-  padding-bottom: -30px;
-  position: relative;
-}
-
-
-/*sidebar*/
-
-aside {
-  section.user_info {
-    margin-top: 20px;
-  }
-  section {
-    padding: 10px 0;
-    margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
+.button_container {
+  position: fixed;
+  top: 15px;
+  right: 2%;
+  height: $button-height;
+  width: $button-width;
+  cursor: pointer;
+  z-index: 100;
+  transition: opacity .25s ease;
+  &.active {
+    .top {
+      transform: translateY(11px) translateX(0) rotate(45deg);
+      background: $color-active;
+      z-index: inherit;
     }
-    span {
+    .middle {
+      opacity: 0;
+      background: $color-active;
+      z-index: inherit;
+    }
+    .bottom {
+      transform: translateY(-11px) translateX(0) rotate(-45deg);
+      background: $color-active;
+      z-index: inherit;
+    }
+  }
+  span {
+  background: $color-main;
+  border: none;
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all .35s ease;
+  cursor: pointer;
+    &:nth-of-type(2) {
+      top: 11px;
+    }
+    &:nth-of-type(3) {
+      top: 22px;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  background: $color-background;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s, visibility .35s, height .35s;
+  overflow: hidden;
+  &.open {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+    li {
+      animation: fadeInRight .5s ease forwards;
+      animation-delay: .35s;
+      &:nth-of-type(2) {
+        animation-delay: .4s;
+      }
+      &:nth-of-type(3) {
+        animation-delay: .45s;
+      }
+      &:nth-of-type(4) {
+        animation-delay: .50s;
+      }
+      &:nth-of-type(5) {
+        animation-delay: .55s;
+      }
+      &:nth-of-type(6) {
+        animation-delay: .60s;
+      }
+      &:nth-of-type(7) {
+        animation-delay: .65s;
+      }
+    }
+  }
+  nav {
+    position: relative;
+    height: 70%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    text-align: center;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    li {
       display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
+      height: 5%;
+      height: calc(100% / 8);
+      min-height: 45px;
+      position: relative;
+      opacity: 0;
+      a {
+        display: block;
+        position: relative;
+        color: $color-link;
+        text-decoration: none;
+        overflow: hidden;
+        &:hover:after,
+         &:focus:after,
+         &:active:after {
+           width: 100%;
+         }
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0%;
+          transform: translateX(-50%);
+          height: 2px;
+          background: $color-link;
+          transition: .35s;
+        }
+      }
     }
   }
 }
 
-
-/*forms*/
-
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  height: 100px;
-  margin-bottom: 20px;
-  margin-left: -10px;
-  @include box_sizing;
-  font-size: 20px;
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    left: 20%;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
 }
 
+/* container */
+.container {
+  margin-top: 53px;
+}
+/*forms*/
 th {
   font-size: 20px;
   height: 160px;
 }
-
-input {
-  height: auto !important;
-  margin: 10px;
-  padding: 20px;
-}
-
 #error_explanation {
   color: red;
   ul {
@@ -186,16 +218,7 @@ input {
     margin: 0 0 30px 0;
   }
 }
-
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
-
 .btn {
-    @include basePadding(8px 20px);
     font-size: 20px;
     border: 2px solid $accent;
     font-weight: bold;
@@ -210,28 +233,25 @@ input {
     background-color: white;
   }
 }
-
 .btn-primary {
   padding-top: 30px;
   margin-left: 80px;
-  @include basePadding(8px 20px);
-    font-size: 20px;
-    border: 2px solid $accent;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 3px;
-    display: inline-block;
-    margin-top: 25px;
-    color: green;
-    background-color: white;
-    width: 300px;
+  font-size: 20px;
+  border: 2px solid $accent;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+  margin-top: 25px;
+  color: green;
+  background-color: white;
+  width: 300px;
   &:hover {
     border-color: lighten($accent, 15%);
     color: lighten($accent, 15%);
     background-color: white;
   }
 }
-
 .kiyaku {
   margin-bottom: 15px;
   margin-top: 30px;
@@ -239,7 +259,6 @@ input {
   margin-left: 185px;
   font-size: 20px;
 }
-
 .checkbox {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -248,50 +267,38 @@ input {
     font-weight: normal;
   }
 }
-
 .form-control {
   margin-bottom: 15px;
 }
-
 #user_setai {
   height: 40px;
   margin-bottom: 15px;
 }
-
 #session_remember_me {
   width: auto;
   margin-left: 0;
 }
-
 .chosen {
   width: 200px;
 }
 
 /*Users index*/
-
 .users {
   list-style: none;
   margin: 0;
   li {
     overflow: auto;
     padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
   }
 }
 
-
-
 /*kakeibo*/
-
 .contents {
   padding-bottom: 50px;
 }
-
 #kakeibo {
   padding-bottom: 150px;
-  margin-right: -50px;
 }
-
 caption {
   font-size: 20px;
   margin-top: 50px;
@@ -321,7 +328,6 @@ caption:after {
   left: 0;
   border-right: 5px solid #1a3654;
 }
-
 table {
   border-collapse: collapse;
   text-align: left;
@@ -331,82 +337,58 @@ tr {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
-
-
 th {
   padding: 15px;
   border-right: 1vw solid #ccc;
-  height: 90px;
-  
+  height: 50px;
   width: 30vw;
+  font-size: 16px;
 }
-
-
 td {
   font-size: 18px;
   height: 3vw;
-  width: 100px;
   width: 40vw;
   padding: 10px;
   border-right: 1vw solid #ccc;
 }
-input {
-  width: 40vw;
-  height: 20vw;
-}
-.btn-primary{
-  margin-left: 25vw;
-}
-
 ul.more_list {
   float: left;
-
 }
-
 .image {
   margin: 10px;
 }
-
 h3#denki {
   position: relative;
   bottom: -50px;
   z-index: 2;
 }
-
 h3#gas {
   position: relative;
   bottom: -50px;
   z-index: 2;
 }
-
 h3#suidou {
   position: relative;
   bottom: -50px;
   z-index: 2;
 }
-
 h3#touyu {
   position: relative;
   bottom: -50px;
   z-index: 2;
 }
-
 h3#gasorin {
   position: relative;
   bottom: -50px;
   z-index: 2;
 }
-
-
 .graph {
   border: 1px solid #ccc;
   margin-top: 80px;
 }
-
 text {
   font-size: 13px;
 }
-
 .env {
   margin-top: -60px;
   margin-bottom: 70px;
@@ -416,7 +398,6 @@ text {
   color: #555;
   background: #ffd5ec;
 }
-
 .vw {
   margin-top: -60px;
   margin-bottom: 70px;
@@ -426,7 +407,6 @@ text {
   color: #555;
   background: #c2eeff;
 }
-
 .fm {
   margin-top: -60px;
   margin-bottom: 70px;
@@ -436,176 +416,13 @@ text {
   color: #555;
   background: #ccff99;
 }
-
-.container1 {
-  height: 70vw;
-}
-
 .foo {
   height: 60px;
   font-size: 24px;
   padding-right: 10px;
 }
 
-
-
-
-/*header*/
-
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-}
-
-#logo:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-header.header {
-  @include basePadding;
-  border-bottom: 1px solid $gray;
-  background-color: #fffff0;
-  position: relative;
-  height: 90px;
-  z-index: 5;
-  div.header__bar.row {
-    position: relative;
-    h1.grid-6 {
-      font-size: 20px;
-      line-height: 5px;
-      float: left;
-      a {
-      }
-    }
-    div.grid-6 {
-      float: right;
-      text-align: right;
-      a.post {
-        @extend .btn;
-        width: 130px;
-        display: inline-left;
-        margin-left: 70px;
-        margin-right: -20px;
-        background-color: white;
-        position: relative;
-      }
-    }
-  }
-  .user_nav {
-    position: relative;
-    height: 70px;
-    position: absolute;
-    padding-top: 20px;
-    margin-right: -5px;
-    right: 0;
-    .image1 {
-      width: 90px;
-      height: 90px;
-      border: 4px solid #fff;
-      margin-left: -25px;
-      background-size: cover;
-      background-position: center center;
-      border-radius: 3px;
-      margin-top: -30px;
-    }
-    span {
-      margin-left: -440px;
-      margin-top: -70px;
-      width: 340px;
-      text-align: center;
-      font-size: 30px;
-      cursor: pointer;
-      padding: 10px;
-      position: fixed;
-      top: 90px;
-      &:after {
-        content: '▼';
-        font-size: .7em;
-        margin-right: -40px;
-      }
-      &:hover ul {
-        color: $accent;
-        display: block;
-      }
-    }
-    ul {
-      display: none;
-      position: relative;
-      top: 10px;
-      right: 0;
-      border-left: 1px solid #d8d8d8;
-      border-right: 1px solid #d8d8d8;
-      box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
-      width: 200px;
-      li {
-        background-color: #f0f0f0;
-        padding: 10px;
-        a {
-          display: block;
-          text-align: left;
-          border-bottom: 1px solid #d8d8d8;
-          width: 180px;
-        }
-      }
-    }
-  }
-}
-
-
-/* トグルボタン */
-#menubtn {
-  width: 90px;
-  height: 60px;
-  padding: 6px 12px;
-  border: solid 1px #aaaaaa;
-  border-radius: 5px;
-  background-color: #ffffff;
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 24px;
-  cursor: pointer;
-  &:hover {
-    background-color: #dddddd;
-  }
-  &:hover ul {
-    display: block;
-    outline: none;
-  }
-  ul {
-    display: none;
-    position: relative;
-    width: 200px;
-    margin-left: -80px;
-    top: 10px;
-    right: 0;
-    border-left: 1px solid #d8d8d8;
-    border-right: 1px solid #d8d8d8;
-    box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
-    li {
-      background-color: #f0f0f0;
-      width: 200px;
-      margin-left: -10px;
-      padding: 10px;
-      a {
-        display: block;
-        text-align: left;
-        border-bottom: 1px solid #d8d8d8;
-      }
-    }
-  }
-}
-
-
 /* profile */
-
 .image1 {
   width: 150px;
   height: 150px;
@@ -619,29 +436,24 @@ header.header {
   top: 30px;
   left: 20px;
 }
-
-
 .profile_edit {
   text-align: center;
   font-size: 20px;
 }
 
-
 /* syokuji */
-
 .btn-syoku {
-  @include basePadding(8px 20px);
-    font-size: 20px;
-    border: 2px solid $accent;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 3px;
-    display: inline-block;
-    margin-top: 10px;
-    color: green;
-    background-color: white;
-    width: 200px;
-    margin-left: 10vw;
+  font-size: 20px;
+  border: 2px solid $accent;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+  margin-top: 10px;
+  color: green;
+  background-color: white;
+  width: 200px;
+  margin-left: 10vw;
   &:hover {
     border-color: lighten($accent, 15%);
     color: lighten($accent, 15%);
@@ -649,18 +461,15 @@ header.header {
   }
 }
 
-
 /* ranking */
-
 .tab-menu {
   width: 700px;
   margin-left: 10px;
-
   ul#tab {
     margin: 0;
     padding: 0;
     margin-top: 50px;
-    widht: 50vw;
+    width: 50vw;
   }
   li.tab {
     display: inline-block;
@@ -675,18 +484,15 @@ header.header {
     font-size: 18px;
     color: #fff;
     text-align: center;
-
     &.selected {
       background-color: #fffff0;
       color: #aecd6a;
     }
   }
 }
-
 .ranking2 {
   display: none;
 }
-
 .ranking3 {
   display: none;
 }
@@ -696,8 +502,6 @@ header.header {
 .ranking5 {
   display: none;
 }
-
-
 .ribbon-wrap {
     box-sizing: border-box;
     margin: 30px auto;
@@ -751,14 +555,11 @@ h1.ribbon {
     right: 0;
     border-left: solid 10px #558b2f;
 }
-
 .text-small {
   margin-top: 40px;
   margin-bottom: 20px;
   margin-left: -100px;
 }
-
-
 .ranking{
   padding: 20;
   padding-left: -20px;
@@ -789,14 +590,11 @@ h1.ribbon {
     }
   }
 }
-
 img {
   margin: 5px;
-
 }
 
 /* syokujidata */
-
 .date {
   float: left;
   ul {
@@ -819,7 +617,6 @@ img {
     border-right: 1px solid #ccc;
   }
 }
-
 .cuisine {
   float: right;
   position: absolute;
@@ -827,7 +624,7 @@ img {
   ul {
     border-collapse: collapse;
     text-align: left;
-    hight: 96px;
+    height: 96px;
   }
   li {
     background-color: #6934;
@@ -838,24 +635,10 @@ img {
   }
 }
 
-
-
 /* envload */
-
 .over {
   color: red;
 }
-
 .low {
   color: #32cd32;
 }
-
-
-/* header sign_up */
-
-.head {
-  font-size: 24px;
-  margin-left: -80px;
-  position: relative;
-}
-
